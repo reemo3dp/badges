@@ -1,20 +1,33 @@
-use <Pacifico-Regular.ttf>;
 use <Sarina-Regular.ttf>;
-use <PermanentMarker-Regular.ttf>;
 
+with_keyring = true;
+to_upper = false;
+txt = "#Never\n Lucky";
+height = 1.2;
+color_layers = 3;
+base = height-color_layers*0.2;
+fontSize = 14;
+rendered_txt = to_upper ? strtoupper(txt) : txt;
+thumbnail = false;
 
-txt = "mechanical\n  creep";
+function strtolower (string) = 
+  chr([for(s=string) let(c=ord(s)) c<91 && c>64 ?c+32:c]); 
+
+function strtoupper (string) = 
+  chr([for(s=string) let(c=ord(s)) c<123 && c>96 ?c-32:c]); 
+
 
 color("lightgray") difference() {
     union() {
-        linear_extrude(1) offset(5) union() { 
-            multiLineSplit(txt, 10);
-            translate([-3, 10+3]) circle(r = 3);
+        linear_extrude(height) fill() offset(5) union() { 
+                multiLineSplit(rendered_txt, fontSize);
+                if(with_keyring) translate([-3, fontSize+3]) circle(r = 3, $fn = 100);
         };
     };
-    translate([-3, 10+3]) cylinder(h = 2, r = 4, center = true);
+    if(with_keyring) translate([-3, fontSize+3, height/2]) cylinder(h = height, r = 4, center = true, $fn = 100);
+    translate([0, 0, base]) color("purple") linear_extrude(height-base) multiLineSplit(rendered_txt, fontSize);
 }
-color("purple") linear_extrude(1) multiLineSplit(txt, 10);
+translate([0, 0, base]) color("purple") linear_extrude(height-base) multiLineSplit(rendered_txt, fontSize);
 
 
 
