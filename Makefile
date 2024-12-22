@@ -33,7 +33,7 @@ all: \
 	stls/badge_dorkus_maximus.3mf \
 	stls/badge_dorkus_minimus.3mf \
 	stls/badge_never_lucky.3mf \
-	stls/badge_dork_supreme.3mf \
+	stls/badge_dork_supreme.3mf
 
 stls/badge_never_lucky.3mf: badges.scad
 	@mkdir ./stls/ 2>/dev/null || true
