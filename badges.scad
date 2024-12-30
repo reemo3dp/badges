@@ -1,8 +1,8 @@
 use <Sarina-Regular.ttf>;
 
-with_keyring = true;
+with_keyring = false;
 to_upper = false;
-txt = "#Never\n Lucky";
+txt = "ingepakte\n schildpad";
 height = 1.2;
 color_layers = 3;
 base = height-color_layers*0.2;
@@ -34,7 +34,7 @@ translate([0, 0, base]) color("purple") linear_extrude(height-base) multiLineSpl
 module multiLine(lines, size){
   union(){
     for (i = [0 : len(lines)-1])
-      translate([0 , -i * (size + 0.5), 0 ])
+      translate([0 , -i * (size + 2), 0 ])
         text(lines[i], size, font = "Sarina:style=Regular");
   }
 }

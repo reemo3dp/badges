@@ -24,6 +24,7 @@ all: \
 	stls/keyring_dorkus_minimus.3mf \
 	stls/keyring_never_lucky.3mf \
 	stls/keyring_dork_supreme.3mf \
+	stls/keyring_ingepakte_schildpad.3mf \
 	stls/badge_nobushill.3mf \
 	stls/badge_mechanical_creep.3mf \
 	stls/badge_constable.3mf \
@@ -33,12 +34,21 @@ all: \
 	stls/badge_dorkus_maximus.3mf \
 	stls/badge_dorkus_minimus.3mf \
 	stls/badge_never_lucky.3mf \
-	stls/badge_dork_supreme.3mf
+	stls/badge_dork_supreme.3mf \
+	stls/badge_ingepakte_schildpad.3mf
+
 
 stls/badge_never_lucky.3mf: badges.scad
 	@mkdir ./stls/ 2>/dev/null || true
 	$(OPENSCAD) -o $@ -o $@.png $(OPENSCAD_ARGS) \
 		-D 'txt="#Never\n Lucky"' \
+		-D 'with_keyring=false' \
+		$< 
+
+stls/badge_ingepakte_schildpad.3mf: badges.scad
+	@mkdir ./stls/ 2>/dev/null || true
+	$(OPENSCAD) -o $@ -o $@.png $(OPENSCAD_ARGS) \
+		-D 'txt="ingepakte\n schildpad"' \
 		-D 'with_keyring=false' \
 		$< 
 
@@ -82,6 +92,13 @@ stls/badge_sock_enthusiast.3mf: badges.scad
 	$(OPENSCAD) -o $@ -o $@.png $(OPENSCAD_ARGS) \
 		-D 'txt="sock\nenthusiast"' \
 		-D 'with_keyring=false' \
+		$< 
+
+stls/keyring_ingepakte_schildpad.3mf: badges.scad
+	@mkdir ./stls/ 2>/dev/null || true
+	$(OPENSCAD) -o $@ -o $@.png $(OPENSCAD_ARGS) \
+		-D 'txt="ingepakte\n schildpad"' \
+		-D 'with_keyring=true' \
 		$< 
 
 stls/keyring_never_lucky.3mf: badges.scad
